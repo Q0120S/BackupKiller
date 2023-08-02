@@ -1,5 +1,6 @@
 import json
 import argparse
+import os
 import sys
 from urllib.parse import urlparse, urlunparse, urljoin
 import tldextract
@@ -15,6 +16,11 @@ BANNER ='''
                                 |_|   
                                                             NoobHunter
 '''
+
+def find_directory(dirname, search_path):
+    for root, dirs, files in os.walk(search_path):
+        if dirname in dirs:
+            return os.path.join(root, dirname)
 
 def extract_url_parts(url):
     parsed_url = urlparse(url)
@@ -135,8 +141,8 @@ def main():
 
     # Input options
     INPUT = parser.add_argument_group('Flags:\n INPUT')
-    INPUT.add_argument('-p', '-pattern', dest='pattern_file', default='patterns.json', help='Pattern File Name (default "patterns.json")')
-    INPUT.add_argument('-e', '-extensions', dest='extensions_file', default='extensions.json', help='Input file containing list of extensions with levels (default "extensions.json")')
+    INPUT.add_argument('-p', '-pattern', dest='pattern_file', default=patterns_location, help='Pattern File Name (default "patterns.json")')
+    INPUT.add_argument('-e', '-extensions', dest='extensions_file', default=extensions_location, help='Input file containing list of extensions with levels (default "extensions.json")')
     INPUT.add_argument('-o', '-output', dest='output_file', default=None, help='Name of the output file')
     
     # Output options
@@ -309,4 +315,10 @@ def main():
         print(e)
 
 if __name__ == "__main__":
+    directory_to_search = "BackupKiller"
+    search_directory = "/root"
+    directory_location = find_directory(directory_to_search, search_directory)
+    patterns_location = directory_location + "/patterns.json"
+    extensions_location = directory_location + "/extensions.json"
+    
     main()
