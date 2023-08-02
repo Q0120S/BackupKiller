@@ -1,0 +1,10 @@
+web
+fullbackup
+backup
+data
+site
+assets
+logs
+web
+debug
+install

@@ -1,0 +1,14 @@
+web
+fullbackup
+backup
+data
+site
+assets
+logs
+web
+debug
+install
+wp-config
+wp-config.php
+error_log
+error

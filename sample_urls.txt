@@ -1,0 +1,4 @@
+https://example.com
+https://example.com/path/
+https://subs.example.com/files/passwords.txt
+https://example.com/search?q=item&sort=newest
