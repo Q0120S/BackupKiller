@@ -135,7 +135,7 @@ def main():
 
     # Input options
     INPUT = parser.add_argument_group('Flags:\n INPUT')
-    INPUT.add_argument('-p', '-pattern', dest='pattern_file', default='patterns.json', help='Pattern File Name (default "pattern.json")')
+    INPUT.add_argument('-p', '-pattern', dest='pattern_file', default='patterns.json', help='Pattern File Name (default "patterns.json")')
     INPUT.add_argument('-e', '-extensions', dest='extensions_file', default='extensions.json', help='Input file containing list of extensions with levels (default "extensions.json")')
     INPUT.add_argument('-o', '-output', dest='output_file', default=None, help='Name of the output file')
     
@@ -182,13 +182,15 @@ def main():
             with open(args.pattern_file, 'r') as file:
                 pattern_file = json.load(file)
         else:
-            pattern_file = {}
+            print("Provide a patterns file")
+            sys.exit(1)
 
         if args.extensions_file:
             with open(args.extensions_file, 'r') as file:
                 extensions_file = json.load(file)
         else:
-            extensions_file = {}
+            print("Provide a extensions file")
+            sys.exit(1)
 
         if args.wordlist:
             with open(args.wordlist, 'r') as file:
@@ -304,7 +306,7 @@ def main():
                 for url in unique_output:
                     print(url)
     except Exception as e:
-        pass
+        print(e)
 
 if __name__ == "__main__":
     main()
