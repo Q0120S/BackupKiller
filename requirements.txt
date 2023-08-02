@@ -1,0 +1,4 @@
+argparse
+urllib
+tldextract
+itertools
